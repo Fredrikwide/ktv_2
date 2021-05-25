@@ -8,18 +8,6 @@
  let availableRoom = 1
  let games = []
  
- // [
- //     {
- //         room: 'game-1',
- //         players: { 
- //             k_TbtAwC6mVUJPWPAAAD: 'Jasmine', 
- //             jt53kJF62zgb1CU7AAAC: 'Johan' 
- //         },
- //         ready: 0,
- //         rounds: 0,
- //     }
- // ]
- 
  let io = null;
  
  const setVirusCoords = () => {
