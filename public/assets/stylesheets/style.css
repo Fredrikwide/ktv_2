@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+
+#app {
+  height: 100vh;
+  width: 100vw;
+  background-image: url('../images/background.jpg');
+  background-size: cover;
+}
+
+#register-player {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#register-player h1 {
+  margin-top: 9rem;
+  font-size: 4rem;
+}
+
+#joinForm {
+  height: inherit;
+  justify-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#joinForm button {
+  background: none;
+  box-shadow: none;
+  border: 1px solid white;
+  text-shadow: none;
+  padding: 0.5rem 1rem;
+}
+
+#joinForm button:hover {
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: none;
+  outline: 3px solid rgb(47, 158, 47);
+  text-shadow: none;
+  padding: 0.5rem 1rem;
+}
+
+
+#joinForm input {
+  border: 1.5px solid white;
+  background-color: transparent;
+  padding: 0.25rem;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+#loading {
+  margin-top: 2rem;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.hide {
+  display: none !important;
+}
+
+#game {
+  height: inherit;
+  display: flex;
+  justify-content: space-between;
+}
+
+#player1, #player2 {
+  height: inherit;
+  width: 20vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align:center;
+}
+
+#player1 h1, #player2 h1 {
+  margin: 2rem 0;
+}
+
+#player1 button, #player2 button {
+  background: none;
+  box-shadow: none;
+  border: 1px solid white;
+  text-shadow: none;
+  padding: 0.25rem 0.5rem;
+}
+
+#player1 button:hover, #player2 button:hover {
+  background-color: #162B46;
+  
+}
+
+#timer1, #timer2 {
+  list-style: none;
+}
+
+#timer1 li, #timer2 li {
+  margin-bottom: 0.5rem;
+}
+
+#gameBoard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#score {
+  font-size: 4rem;
+  text-align: center;
+}
+
+#setWinner {
+  text-align: center;
+  font-size: 3rem;
+}
+
+#playAgainButton {
+  background: none;
+  box-shadow: none;
+  border: 1px solid white;
+  text-shadow: none;
+  padding: 0.5rem 1rem;
+}
+
+#gameArea {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+}
+
+#virus {
+  cursor: pointer;
+  border: 3px solid yellowgreen;
+  background-image: url('../images/virus.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  object-fit: cover;
+  grid-column: 5;
+  grid-row: 9;
+}

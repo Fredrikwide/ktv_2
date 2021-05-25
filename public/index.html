@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kill the virus!</title>
+
+    <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"  crossorigin="*">
+
+    <link type="text/css" rel="stylesheet" href="/public/assets/stylesheets/style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="register-player">
+            <h1>Kill the virus!</h1>
+            <form id="joinForm">
+                <div class="form-group">
+                    <input type="text" id="username" required placeholder="Your name">
+                </div>
+
+                <button type="submit">Join Game</button>
+
+                <span id="loading" class="hide">Waiting for player...</span>
+            </form>
+        </div> 
+
+        <div id="game" class="hide">
+            <div id="player1">
+                <h1></h1>
+                <button>Ready?</button>
+                <ul id="timer1"></ul>
+
+            </div>
+
+            <div id="gameBoard">
+                <div id="score">
+                    <span id="player1Score">0</span>-<span id="player2Score">0</span>
+                </div>
+                <div id="playAgainButton" class="hide">Play Again?</div>
+                <span id="setWinner"></span>
+
+                <div id="gameArea">
+                    <span id="virus" class="hide"></span>
+                </div>
+            </div>
+
+            <div id="player2">
+                <h1></h1>
+                <ul id="timer2"></ul>
+            </div>
+
+        </div>
+
+    </div>
+    <script type="application/javascript" src="/assets/javascripts/moment.js"></script>
+    <script type="application/javascript" src="/socket.io/socket.io.js"></script>
+	<script type="application/javascript" src="/assets/javascripts/game.js"></script>
+</body>
+</html>
