@@ -1,5 +1,5 @@
+import moment from 'moment'
 let socket = io();
-
 const virusEl = document.querySelector('#virus');
 
 let newListItem1;
