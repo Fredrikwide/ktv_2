@@ -5,17 +5,10 @@ const virusEl = document.querySelector('#virus');
 let newListItem1;
 let newListItem2;
 
-
-/**
- * Functions
- */
-
-
 const handleVirusClick = () => {
     socket.emit('clicked');
     virusEl.removeEventListener('click', handleVirusClick);
 }
-
 
 document.querySelector('#joinForm').addEventListener('submit', e => {
     e.preventDefault();
@@ -23,42 +16,37 @@ document.querySelector('#joinForm').addEventListener('submit', e => {
     document.querySelector('#loading').classList.remove('hide')
 
     const username = document.querySelector('#username').value
-    
+
+    const timeJoined = moment().format
+
     socket.emit('newPlayer', username)
     
 });
 
 document.querySelector('#player1 button').addEventListener('click', () => {
-    document.querySelector('#player1 button').innerHTML = 'Ready!'
+    document.querySelector('#player1 button').innerHTML = 'Start!'
     socket.emit("ready")
 })
 
-
-
-socket.on('starGame', (players) => {
+socket.on('newGame', (players) => {
     const player1 = players[socket.id]
     delete players[socket.id]
     const player2 = Object.values(players)
 
-    // Fill the players sidebars with relevant info
     document.querySelector('#player1 h1').innerHTML = player1
     document.querySelector('#player2 h1').innerHTML = player2
-
-    // Remove the register player overlay and show the game display
     document.querySelector('#register-player').classList.add('hide')
     document.querySelector('#game').classList.remove('hide')
 })
 
 
 socket.on('startGame', (delay, position1, position2) => {
-    //remove ready button
+
     document.querySelector('#player1 button').classList.add('hide');
 
-    // add the position to the virus
     virusEl.style.gridColumn = position1;
     virusEl.style.gridRow = position2;
 
-    // after the delay, remove the class hide from the virus
     setTimeout(() => {
         virusEl.classList.remove('hide');
 
@@ -100,8 +88,6 @@ socket.on('getScore', id => {
     let oldScore = Number(document.querySelector(`#${player}Score`).innerHTML);
     let newScore = ++oldScore;
     document.querySelector(`#${player}Score`).innerHTML = newScore;
-
-    // hide the virus
     virusEl.classList.add('hide')
 })
 
@@ -114,7 +100,7 @@ socket.on('stopTimer', (id) => {
 
 socket.on('setWinner', () => {
     if(document.querySelector('#player1Score').innerHTML > document.querySelector('#player2Score').innerHTML) {
-        document.querySelector('#setWinner').innerHTML = 'You win!'
+        document.querySelector('#setWinner').innerHTML = 'congratulations You win!'
     } else if (document.querySelector('#player1Score').innerHTML < document.querySelector('#player2Score').innerHTML) {
         document.querySelector('#setWinner').innerHTML = 'You lose Better luck next time...'
     } else {

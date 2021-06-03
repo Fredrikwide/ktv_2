@@ -18,15 +18,13 @@
      return Math.floor(Math.random() * (5000 - 1000)) + 1000
  }
  
- 
- const handlePlayerJoin = function(username) {
+ const handlePlayerJoin = function(username, time) {
      players[this.id] = username;
- 
+     players.time = time
      this.join('game-' + availableRoom);
      
      if(Object.keys(players).length === 2) {
          const room = 'game-' + availableRoom
- 
          let game = {
              room,
              players,
@@ -34,15 +32,9 @@
              rounds: 0,
              clicks: [],
          }
- 
          games.push(game)
- 
-         io.to(room).emit('starGame', players);
-         
-         // empty players
+         io.to(room).emit('newGame', players);
          players = {}
-         
-         // increase the availableRoom number
          availableRoom++
      }
  };
@@ -51,19 +43,14 @@
  const handlePlayerIsReady = function() {
      const game = games.find(id => id.players[this.id]);
      game.ready++
- 
-     if(game.ready === 2) {
-         // start the game
+     if(game.ready % 2 === true) {
          io.to(game.room).emit('startGame', generateDelay(), setVirusCoords(), setVirusCoords())
      }
  }
  
  const handleClicked = function() {
      const game = games.find(id => id.players[this.id]);
- 
-     // Stop timer
      io.to(game.room).emit('stopTimer', this.id)
- 
      game.clicks.push(this.id)
  
      if(game.clicks.length === 2) {
